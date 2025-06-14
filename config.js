@@ -39,13 +39,16 @@ function kyun(seconds){
 }
 					runtime = process.uptime()
 					teks = `${kyun(runtime)}`
-global.owner = ['17608914335', '0' , '436506665652696', '6283820073017', '6289637133848'] // Put your number here
-global.fake = ['17608914335', '0', '0', '0']
-global.fakeNum = ['17608914335','0' ]
-global.mods = [] // Want some help?
-global.prems = [] // Premium user has unlimited limit
-global.APIs = { // API Prefix
-  // name: 'https://website'
+global.owner = ['923133997412', '0', '436506665652696', '6283820073017', '6289637133848'] // Your main and backup numbers
+global.fake = ['923000112233', '0', '0', '0'] // Used for "fake" features if needed
+global.fakeNum = ['923000112233', '0'] // Duplicate or temporary numbers
+global.mods = ['923133997412'] // Moderators - give yourself admin powers
+global.prems = ['923133997412'] // Premium users get unlimited limits
+
+global.APIs = { // Add your APIs if needed (optional)
+  // example: 'zenz': 'https://zenzapis.xyz'
+}
+
   lol: 'https://api.lolhuman.xyz',
   nrtm: 'https://nurutomo.herokuapp.com',
   xteam: 'https://api.xteam.xyz',
