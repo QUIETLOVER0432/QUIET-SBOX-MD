@@ -1,66 +1,60 @@
-let handler  = async (m, { itsu, command, text }) => {
+let handler = async (m, { itsu, command, text }) => {
   let type = command.replace(/^set(menu|help|\?)/, '').toLowerCase()
   if (type == '') {
     if (text) {
       itsu.menu = text
-      itsu.reply(m.chat, 'Menu berhasil diatur\n' + info, m)
+      itsu.reply(m.chat, '✅ Full menu has been set successfully.\n' + info, m)
     } else {
       itsu.menu = {}
-      itsu.reply(m.chat, 'Menu direset', m)
+      itsu.reply(m.chat, '🔄 Full menu has been reset to default.', m)
     }
   } else {
     itsu.menu = typeof itsu.menu == 'object' ? itsu.menu : {}
     if (text) {
       itsu.menu[type] = text
-      itsu.reply(m.chat, 'Menu ' + type + ' berhasil diatur\n' + info, m)
+      itsu.reply(m.chat, `✅ Menu *${type}* has been updated.\n` + info, m)
     } else {
       delete itsu.menu[type]
-      itsu.reply(m.chat, 'Menu ' + type + ' direset', m)
+      itsu.reply(m.chat, `🔄 Menu *${type}* has been reset to default.`, m)
     }
   }
 }
-handler.help = ['', 'before','header','body','footer','after'].map(v => 'setmenu' + v + ' <teks>')
+
+handler.help = ['', 'before', 'header', 'body', 'footer', 'after'].map(v => 'setmenu' + v + ' <text>')
 handler.tags = ['owner']
 handler.command = /^set(menu|help|\?)(before|header|body|footer|after)?$/i
+
 handler.owner = true
 handler.mods = false
 handler.premium = false
 handler.group = false
 handler.private = false
-
 handler.admin = false
 handler.botAdmin = false
-
 handler.fail = null
 
 module.exports = handler
 
+// 💡 MENU PLACEHOLDER INFO
 let info = `
-Universal:
-%% (%)
-%p (Prefix)
-%exp (Current Exp)
-$maxexp (Exp To Level Up)
-%totalexp (Total Exp)
-%xp4levelup (Exp yang dibutuhkan untuk levelup)
-%limit (Limit)
-%name (Nama)
-%weton (Weton Hari ini)
-%week (Hari)
-%date (Tanggal)
-%time (Jam)
-%uptime (Uptime Bot)
-%rtotalreg (Jumlah User yang daftar di database)
-%totalreg (Jumlah User yang ada di database)
-%npmname
-%npmdesc
-%version
-%github
+📚 *Menu Placeholders:*
 
-Bagian Menu Header & Footer:
-%category (Kategori)
+🌐 Universal:
+%name — User name
+%limit — Remaining limit
+%exp — Current exp
+%uptime — Bot uptime
+%date — Today's date
+%time — Current time
+%prefix — Command prefix
+%totalreg — Total registered users
+%week — Day of week
+%category — Menu category
+%cmd — Command name
+%islimit — If command has limit
 
-Bagian Menu Body:
-%cmd (Command)
-%islimit (Jika command di limit)
+📌 Example Commands You Can Use:
+#setmenuheader ╭───『 QUIET-SBOX-MD 』───╮
+#setmenubody │ %cmd
+#setmenufooter ╰──────[ By QUIET ]──────╯
 `.trim()
